@@ -1,0 +1,5 @@
+flowchart LR
+    U["Branch uploads 25-page PDF"] --> API["Sync API"] --> LLM["One big LLM call<br/>whole PDF → JSON"] --> LOS[("LOS")]
+    API -. "timeout → user retries → duplicate" .-> API
+    classDef bad fill:#fdecea,stroke:#c0392b
+    class API,LLM bad

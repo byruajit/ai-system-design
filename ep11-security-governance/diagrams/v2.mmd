@@ -1,0 +1,14 @@
+flowchart LR
+    U["User (SSO)"] --> IN["Input layer<br/>limits · injection screen"]
+    DOCS["Retrieved docs / tool output<br/>(untrusted)"] --> Q["Screen + quarantine"]
+    IN --> PII["PII redaction"]
+    Q --> PII
+    PII --> GW["LLM gateway<br/>approved · pinned · regional"]
+    GW --> OUT["Output layer<br/>PII filter · citation ACL check · encoding"]
+    OUT --> R["Response"]
+    TOOLS["Scoped tools + approvals"] -.- GW
+    OUT --> AUD[("Immutable audit log<br/>hashes · versions · guardrail decisions")]
+    INV[("Model inventory<br/>owner · risk tier · validation")] -.- GW
+    RT["Red-team suite in CI"] -.- GW
+    classDef good fill:#e8f5e9,stroke:#2e7d32
+    class IN,Q,PII,OUT,AUD,INV good

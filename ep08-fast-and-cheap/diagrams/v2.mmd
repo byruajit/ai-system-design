@@ -1,0 +1,14 @@
+flowchart LR
+    Q["Question"] --> GW["Gateway"] --> EC{"Exact cache?"}
+    EC -->|hit| OUT["Stream answer"]
+    EC -->|miss| SC{"Semantic cache?<br/>scoped · slot guard · version check"}
+    SC -->|hit| OUT
+    SC -->|miss| RET["Parallel BM25 + vector<br/>≤ 150 ms"]
+    RET --> RR["Light reranker → top 3<br/>≤ 250 ms"]
+    RR --> RT["Router: small (70%) / large"]
+    RT --> M["Model with stable prompt prefix<br/>(prompt caching)"]
+    M -->|"streaming, TTFT < 1 s"| OUT
+    M --> W["Write cache entry<br/>+ doc versions + scope"]
+    BATCH["Batch API<br/>nightly summaries · evals"] -.-> RT
+    classDef good fill:#e8f5e9,stroke:#2e7d32
+    class SC,RR,RT,OUT good

@@ -1,0 +1,15 @@
+# Core (all demos run offline with these)
+numpy>=1.26
+scikit-learn>=1.4
+pydantic>=2.6
+langgraph>=0.2        # Ep 7
+mcp>=1.2              # Ep 6 (works with SDK v1 FastMCP or v2 MCPServer)
+pyyaml>=6.0
+
+# Optional
+tiktoken              # Ep 1 exact token counts
+sentence-transformers # real embeddings instead of the offline stand-in (needs model download)
+
+# Rendering cheat sheets/diagrams (maintainers only)
+markdown
+playwright            # then: playwright install chromium ; and npm i -g @mermaid-js/mermaid-cli

@@ -1,0 +1,10 @@
+{
+  "_note": "ILLUSTRATIVE tier prices in USD per 1M tokens. They are NOT any provider's real price list. Before recording, replace them with the current list prices of the models you show, and say on camera the date you checked.",
+  "usd_to_inr": 88.0,
+  "models": {
+    "small":     {"input": 0.15, "output": 0.60,  "label": "Small / fast tier (illustrative)"},
+    "medium":    {"input": 1.00, "output": 4.00,  "label": "Mid tier (illustrative)"},
+    "large":     {"input": 3.00, "output": 15.00, "label": "Frontier tier (illustrative)"},
+    "embedding": {"input": 0.02, "output": 0.00,  "label": "Embedding model (illustrative)"}
+  }
+}

@@ -1,0 +1,4 @@
+flowchart LR
+    Q["Question"] --> E["Embed<br/>120 ms"] --> S["Search<br/>300 ms"] --> R["Rerank 20<br/>900 ms"] --> M["Frontier model<br/>8 chunks · no streaming<br/>7.6 s"] --> A["Answer at ~9 s"]
+    classDef bad fill:#fdecea,stroke:#c0392b
+    class M,A bad

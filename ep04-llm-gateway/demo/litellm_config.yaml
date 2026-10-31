@@ -1,0 +1,45 @@
+# Ep 4 — the same gateway ideas as config for the LiteLLM proxy.
+# Model names are examples; check the current LiteLLM docs and your providers'
+# model lists before using. Run with:  litellm --config litellm_config.yaml
+#
+# Apps call ONE endpoint with ONE virtual key per team; they never see provider keys.
+
+model_list:
+  # Logical name "small": cheap, fast tier for most questions
+  - model_name: small
+    litellm_params:
+      model: groq/llama-3.1-8b-instant
+      api_key: os.environ/GROQ_API_KEY
+  - model_name: small            # same logical name = load-balanced / backup deployment
+    litellm_params:
+      model: ollama/llama3.1
+      api_base: http://localhost:11434
+
+  # Logical name "large": reasoning-heavy tasks (credit memos, complaint drafts)
+  - model_name: large
+    litellm_params:
+      model: openai/gpt-4.1          # example; pin a dated version in production
+      api_key: os.environ/OPENAI_API_KEY
+  - model_name: large-backup
+    litellm_params:
+      model: anthropic/claude-sonnet-4-5   # example; use your approved model
+      api_key: os.environ/ANTHROPIC_API_KEY
+
+router_settings:
+  routing_strategy: simple-shuffle   # spread load across deployments of the same name
+  num_retries: 2
+  timeout: 30                        # seconds per call
+  allowed_fails: 3                   # cooldown a deployment after repeated failures
+  cooldown_time: 60
+
+litellm_settings:
+  fallbacks: [{"large": ["large-backup", "small"]}]   # degrade to small as last resort
+  drop_params: true
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  database_url: os.environ/DATABASE_URL   # needed for virtual keys, team budgets, spend logs
+
+# Per-team budgets are set on virtual keys via the admin API, e.g.:
+#   POST /key/generate  {"team_id": "retail-ops", "max_budget": 1200, "budget_duration": "30d",
+#                        "models": ["small", "large"], "metadata": {"cost_centre": "RB-OPS"}}

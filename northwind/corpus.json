@@ -1,0 +1,58 @@
+{
+  "_note": "Synthetic Northwind Bank policy corpus for demos. Fictional content; not real banking policy.",
+  "documents": [
+    {"doc_id": "POL-RET-207", "title": "Fixed Deposits — Premature Withdrawal", "version": 3, "effective": "2026-04-01", "status": "active", "groups": ["all-staff"],
+     "sections": {
+       "4.1 Penalty": "A penalty of 1% on the applicable interest rate applies when a fixed deposit (FD) is withdrawn before maturity.",
+       "4.2 Senior citizen waiver": "For senior citizens holding an FD under the Sanchay scheme, the premature withdrawal penalty is waived for tenures above 12 months.",
+       "4.3 Approvals": "Branch managers may approve premature withdrawal exceptions up to INR 5,00,000. Amounts above this require regional head approval."}},
+    {"doc_id": "POL-RET-207-v2", "title": "Fixed Deposits — Premature Withdrawal (superseded)", "version": 2, "effective": "2024-07-01", "status": "superseded", "groups": ["all-staff"],
+     "sections": {
+       "4.1 Penalty": "A penalty of 0.5% on the applicable interest rate applies when a fixed deposit is withdrawn before maturity.",
+       "4.2 Senior citizen waiver": "No waiver applies to senior citizens."}},
+    {"doc_id": "POL-OPS-114", "title": "Branch Cash Handling Limits", "version": 5, "effective": "2026-01-15", "status": "active", "groups": ["all-staff"],
+     "sections": {
+       "3.2 Counter withdrawal limit": "The cash withdrawal limit at the branch counter is INR 2,00,000 per customer per day. Withdrawals above this require 24 hours' notice.",
+       "3.4 Cash transaction reporting": "Cash transactions of INR 10,00,000 or more in a month must be flagged to the compliance team for CTR reporting."}},
+    {"doc_id": "POL-HR-031", "title": "Leave Policy", "version": 7, "effective": "2026-02-01", "status": "active", "groups": ["all-staff"],
+     "sections": {
+       "2.1 Annual leave": "Employees accrue 24 days of privileged leave (PL) per calendar year. Up to 60 days of PL may be carried forward.",
+       "2.3 Work from home": "Head-office staff may work from home up to 2 days per week with manager approval. Branch staff are not eligible for WFH."}},
+    {"doc_id": "POL-HR-045", "title": "Senior Leadership Compensation Bands", "version": 2, "effective": "2026-04-01", "status": "active", "groups": ["hr-leadership", "exec"],
+     "sections": {
+       "1.1 Director band": "Director-level fixed pay ranges from INR 85 lakh to INR 1.4 crore. Variable pay is capped at 40% of fixed pay.",
+       "1.2 Confidentiality": "This document is restricted to HR leadership and executive committee members."}},
+    {"doc_id": "POL-CRD-212", "title": "Retail Home Loan Credit Policy", "version": 4, "effective": "2026-03-10", "status": "active", "groups": ["lending", "risk"],
+     "sections": {
+       "5.1 LTV caps": "Maximum loan-to-value (LTV) is 90% for loans up to INR 30 lakh, 80% for loans between INR 30 lakh and 75 lakh, and 75% above INR 75 lakh.",
+       "5.3 FOIR": "Fixed obligation to income ratio (FOIR) must not exceed 55% for salaried applicants and 50% for self-employed applicants.",
+       "5.6 Exceptions": "Credit exceptions above policy require approval from the zonal credit committee and must be recorded in the LOS."}},
+    {"doc_id": "POL-KYC-009", "title": "Customer Due Diligence and Re-KYC", "version": 6, "effective": "2025-11-01", "status": "active", "groups": ["all-staff"],
+     "sections": {
+       "2.1 Officially valid documents": "Accepted proof of identity includes passport, Aadhaar (with consent), voter ID, driving licence and NREGA job card. PAN is mandatory for account opening.",
+       "3.2 Re-KYC periodicity": "Re-KYC is required every 2 years for high-risk customers, every 8 years for medium-risk and every 10 years for low-risk customers.",
+       "4.1 Video KYC": "Video-based customer identification (V-CIP) is permitted when conducted by trained staff from bank premises with live location capture."}},
+    {"doc_id": "POL-AML-017", "title": "Suspicious Transaction Monitoring", "version": 3, "effective": "2026-05-20", "status": "active", "groups": ["compliance", "risk"],
+     "sections": {
+       "1.2 Alert SLA": "Transaction monitoring alerts must be reviewed by an analyst within 7 calendar days of generation.",
+       "1.4 STR filing": "Suspicious transaction reports (STRs) must be filed within 7 days of the analyst concluding that a transaction is suspicious.",
+       "2.1 Tipping off": "Staff must never disclose to a customer that an STR has been filed or is being considered."}},
+    {"doc_id": "POL-IT-220", "title": "Acceptable Use of Generative AI", "version": 1, "effective": "2026-06-01", "status": "active", "groups": ["all-staff"],
+     "sections": {
+       "1.1 Approved tools": "Only bank-approved AI assistants accessed through the bank's AI gateway may be used for work. Public consumer chatbots are prohibited for bank data.",
+       "1.3 Customer data": "Customer personal data must never be pasted into an AI tool unless the tool is approved for confidential data and the purpose is documented.",
+       "2.1 Human review": "AI-generated content sent to customers must be reviewed by a human before sending."}},
+    {"doc_id": "POL-OPS-301", "title": "Debit Card Disputes and Chargebacks", "version": 2, "effective": "2026-02-15", "status": "active", "groups": ["all-staff"],
+     "sections": {
+       "2.1 Dispute window": "Customers may raise a debit card dispute within 90 days of the transaction date.",
+       "2.4 Shadow credit": "For disputes under INR 25,000, a provisional (shadow) credit is given within 10 working days while the chargeback is investigated."}},
+    {"doc_id": "POL-SME-118", "title": "SME Working Capital Limits", "version": 3, "effective": "2026-01-01", "status": "active", "groups": ["lending", "risk"],
+     "sections": {
+       "3.1 Turnover method": "Working capital limits for MSME borrowers with turnover up to INR 5 crore are assessed at 20% of projected annual turnover.",
+       "3.3 Review": "All working capital limits must be reviewed annually; stock statements are required monthly for limits above INR 1 crore."}},
+    {"doc_id": "POL-US-COM-004", "title": "US Subsidiary — Overdraft Fee Policy", "version": 2, "effective": "2026-03-01", "status": "active", "groups": ["us-staff"],
+     "sections": {
+       "1.1 Fee": "Northwind US charges an overdraft fee of USD 15, limited to one fee per day. No fee applies when the overdraft is USD 50 or less.",
+       "1.2 Residency": "US customer data is processed only in US-region systems."}}
+  ]
+}

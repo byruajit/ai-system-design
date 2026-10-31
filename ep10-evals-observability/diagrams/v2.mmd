@@ -1,0 +1,19 @@
+flowchart LR
+    subgraph OFF["Offline loop"]
+        PR["PR: prompt · retrieval · model"] --> CI["CI eval gate<br/>golden set · deterministic metrics"]
+        CI -->|pass| CAN["Shadow / canary"]
+        CI -->|fail| BLOCK["Merge blocked"]
+        NIGHT["Nightly: LLM-judged metrics<br/>(calibrated judge)"] -.-> CI
+    end
+    CAN --> PROD["Production"]
+    subgraph ON["Online loop"]
+        PROD --> TR["Traces: retrieval · rerank · LLM · tools<br/>model + prompt version · tokens · cost"]
+        TR --> SAMP["1–2% sampled → judge + human review"]
+        PROD --> FB["User feedback + escalations"]
+        SAMP --> AL["Quality alerts<br/>refusal · faithfulness · cost drift"]
+        FB --> AL
+    end
+    AL --> GS[("Golden set (Git)")]
+    GS --> CI
+    classDef good fill:#e8f5e9,stroke:#2e7d32
+    class CI,TR,SAMP,GS good

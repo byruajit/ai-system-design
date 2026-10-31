@@ -1,0 +1,28 @@
+# Copy to .github/workflows/eval-gate.yml
+# Every PR that touches prompts, retrieval, chunking or model config must pass the golden-set gate.
+name: eval-gate
+on:
+  pull_request:
+    paths:
+      - "prompts/**"
+      - "retrieval/**"
+      - "config/models*.yaml"
+      - "northwind/golden_set.json"
+jobs:
+  offline-evals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install numpy scikit-learn
+      - name: Deterministic gate (retrieval, refusal, ACL leak)
+        run: python ep10-evals-observability/demo/eval_gate.py --config release
+      # Optional second stage: LLM-judged metrics on a sample (costs tokens; run nightly or on label)
+      # - run: pip install ragas    # or deepeval / promptfoo
+      # - run: python evals/llm_judged.py --sample 50 --fail-under faithfulness=0.9
+      #   env: { LLM_API_KEY: "${{ secrets.EVAL_LLM_API_KEY }}" }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: eval-traces, path: eval_traces.jsonl }

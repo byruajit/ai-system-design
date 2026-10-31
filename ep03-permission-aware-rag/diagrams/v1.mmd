@@ -1,0 +1,5 @@
+flowchart LR
+    CRON["Nightly cron"] --> CRAWL["Crawl all of SharePoint / DMS"] --> EMB["Re-embed everything"] --> IDX[("Single index<br/>no ACL metadata")]
+    U["Any employee"] --> Q["Question"] --> IDX --> LLM["LLM"] --> A["Answer<br/>(may include restricted content)"]
+    classDef bad fill:#fdecea,stroke:#c0392b
+    class IDX,A bad

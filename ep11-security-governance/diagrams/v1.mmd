@@ -1,0 +1,5 @@
+flowchart LR
+    U["User / email / PDF"] --> P["Prompt<br/>(contains secrets, raw PII)"] --> M["Any model"] --> O["Output rendered as-is"]
+    M --> LOG[("Raw logs with PAN/Aadhaar")]
+    classDef bad fill:#fdecea,stroke:#c0392b
+    class P,LOG,O bad

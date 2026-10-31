@@ -1,0 +1,20 @@
+{
+  "_note": "Golden questions for the policy bot. expected_sources = doc_id#section that must be retrieved; answer_must_contain = facts a correct answer includes. 'unanswerable' items must be refused.",
+  "items": [
+    {"id": "G01", "question": "Can a senior citizen break a 2-year FD early without penalty?", "expected_sources": ["POL-RET-207#4.2 Senior citizen waiver"], "answer_must_contain": ["waived", "12 months"]},
+    {"id": "G02", "question": "What is the penalty for premature FD withdrawal?", "expected_sources": ["POL-RET-207#4.1 Penalty"], "answer_must_contain": ["1%"]},
+    {"id": "G03", "question": "Up to what amount can a branch manager approve an FD premature withdrawal exception?", "expected_sources": ["POL-RET-207#4.3 Approvals"], "answer_must_contain": ["5,00,000"]},
+    {"id": "G04", "question": "What is the daily cash withdrawal limit at the counter?", "expected_sources": ["POL-OPS-114#3.2 Counter withdrawal limit"], "answer_must_contain": ["2,00,000"]},
+    {"id": "G05", "question": "How many days of PL can I carry forward?", "expected_sources": ["POL-HR-031#2.1 Annual leave"], "answer_must_contain": ["60"]},
+    {"id": "G06", "question": "Can branch staff work from home?", "expected_sources": ["POL-HR-031#2.3 Work from home"], "answer_must_contain": ["not eligible"]},
+    {"id": "G07", "question": "What is the maximum LTV for a 50 lakh home loan?", "expected_sources": ["POL-CRD-212#5.1 LTV caps"], "answer_must_contain": ["80%"]},
+    {"id": "G08", "question": "What FOIR is allowed for self-employed applicants?", "expected_sources": ["POL-CRD-212#5.3 FOIR"], "answer_must_contain": ["50%"]},
+    {"id": "G09", "question": "How often is re-KYC needed for high risk customers?", "expected_sources": ["POL-KYC-009#3.2 Re-KYC periodicity"], "answer_must_contain": ["2 years"]},
+    {"id": "G10", "question": "Within how many days must a TM alert be reviewed?", "expected_sources": ["POL-AML-017#1.2 Alert SLA"], "answer_must_contain": ["7"]},
+    {"id": "G11", "question": "Can I paste customer data into ChatGPT?", "expected_sources": ["POL-IT-220#1.3 Customer data", "POL-IT-220#1.1 Approved tools"], "answer_must_contain": ["never", "approved"]},
+    {"id": "G12", "question": "How long does a customer have to raise a debit card dispute?", "expected_sources": ["POL-OPS-301#2.1 Dispute window"], "answer_must_contain": ["90 days"]},
+    {"id": "G13", "question": "What is the director pay band?", "expected_sources": ["POL-HR-045#1.1 Director band"], "answer_must_contain": ["85 lakh"], "restricted_to": ["hr-leadership", "exec"]},
+    {"id": "G14", "question": "What is the bank's policy on cryptocurrency custody?", "expected_sources": [], "answer_must_contain": [], "unanswerable": true},
+    {"id": "G15", "question": "When is a CTR flag raised for cash deposits?", "expected_sources": ["POL-OPS-114#3.4 Cash transaction reporting"], "answer_must_contain": ["10,00,000"]}
+  ]
+}

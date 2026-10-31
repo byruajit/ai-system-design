@@ -1,0 +1,9 @@
+flowchart LR
+    R["Researcher agent"] <--> A["Analyst agent"]
+    A <--> K["Risk agent"]
+    K <--> C["Compliance agent"]
+    C <--> W["Writer agent"]
+    W <--> R
+    T[("Shared transcript<br/>grows every turn")] -.- R & A & K & C & W
+    classDef bad fill:#fdecea,stroke:#c0392b
+    class T bad

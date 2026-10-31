@@ -1,0 +1,15 @@
+flowchart LR
+    U["Users"] --> SHED{"Load shedding<br/>priority: customer-facing first"}
+    SHED --> APP["App service<br/>timeouts · bulkheads · retry budget"]
+    APP --> CB1{"Breaker:<br/>primary"}
+    CB1 -->|closed| P1["Primary LLM"]
+    CB1 -->|open| CB2{"Breaker:<br/>backup"}
+    CB2 -->|closed| P2["Backup LLM"]
+    CB2 -->|open| SM["Small / self-hosted model"]
+    SM -->|"also failing"| DEG["Degraded mode<br/>keyword results + banner"]
+    APP --> VDB[("Vector DB replicas")]
+    VDB -. "timeout" .-> KW["BM25 fallback"]
+    APP --> Q[["Queue for non-urgent work"]]
+    MON["Health checks · alerts · runbook"] -.- APP
+    classDef good fill:#e8f5e9,stroke:#2e7d32
+    class CB1,CB2,DEG,KW,SHED good

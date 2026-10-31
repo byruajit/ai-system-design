@@ -1,0 +1,21 @@
+flowchart LR
+    subgraph SRC["Sources"]
+        SP["SharePoint / DMS<br/>change webhooks"]
+        IDP["Identity provider<br/>group changes"]
+    end
+    SP --> BUS[["Event queue"]]
+    BUS --> W["Ingestion workers<br/>parse · chunk · embed<br/>idempotent upsert"]
+    W --> ALIAS{{"Alias: policies"}}
+    ALIAS --> BLUE[("policies-v1<br/>(serving)")]
+    ALIAS -.-> GREEN[("policies-v2<br/>(building + evals)")]
+    BUS --> TOMB["Tombstones<br/>→ purge job"]
+    TOMB --> BLUE
+    REC["Nightly reconciliation<br/>(catches missed events)"] --> BUS
+    U["User"] --> API["Query API"]
+    IDP --> GC["Group cache (TTL 5 min)"]
+    API --> GC
+    API -->|"filter: groups ∩ user · active · not deleted"| ALIAS
+    ALIAS --> CHK["Post-retrieval ACL re-check"] --> LLM["LLM"] --> A["Answer"]
+    CHK --> AUD[("Audit log<br/>user · chunks · versions")]
+    classDef good fill:#e8f5e9,stroke:#2e7d32
+    class GC,CHK,TOMB good

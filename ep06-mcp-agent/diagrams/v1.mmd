@@ -1,0 +1,6 @@
+flowchart LR
+    EM["Customer email<br/>(contains injected instructions)"] --> AG["Agent<br/>40 tools · admin service account"]
+    AG --> CB[("Core banking<br/>refunds · blocks · limits")]
+    AG -. "loops 30×" .-> AG
+    classDef bad fill:#fdecea,stroke:#c0392b
+    class AG,CB bad

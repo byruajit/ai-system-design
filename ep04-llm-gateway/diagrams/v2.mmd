@@ -1,0 +1,22 @@
+flowchart LR
+    subgraph APPS["Apps (one virtual key per team)"]
+        A1["Policy bot"]
+        A2["Credit memo"]
+        A3["HR chatbot"]
+    end
+    APPS --> GW["LLM Gateway"]
+    subgraph GWI["Inside the gateway"]
+        AUTH["Auth: virtual key → team"] --> POL["Policy: data class → allowed models/regions"]
+        POL --> BUD["Budget + rate limit check"] --> RT["Router: task · length · difficulty"]
+        RT --> FB["Fallback chain + timeouts + cooldown"]
+    end
+    GW --> AUTH
+    FB --> S1["small: provider A (India region)"]
+    FB --> S2["small: self-hosted (vLLM)"]
+    FB --> L1["large: provider B (pinned version)"]
+    FB --> L2["large-backup: provider C"]
+    FB --> LOG[("Usage log<br/>team · model · tokens · cost · latency")]
+    VAULT[("Vault: provider keys")] -.-> FB
+    EVAL["Golden-set eval gate<br/>before any model change"] -.-> RT
+    classDef good fill:#e8f5e9,stroke:#2e7d32
+    class POL,BUD,FB,EVAL good

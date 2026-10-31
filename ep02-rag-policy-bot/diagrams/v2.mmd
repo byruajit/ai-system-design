@@ -1,0 +1,21 @@
+flowchart LR
+    subgraph ING["Ingestion (offline)"]
+        D["Policies · circulars · SOPs"] --> PARSE["Layout-aware parser<br/>sections · tables kept whole"]
+        PARSE --> CH["Section chunks + contextual header"]
+        CH --> META["Metadata: doc_id · section · version<br/>effective date · status · groups"]
+        META --> EMB["Embeddings"] --> VDB[("Vector index (HNSW)")]
+        META --> KW[("Keyword index (BM25)")]
+    end
+    subgraph QRY["Query path (online)"]
+        Q["Question"] --> F["Filter: status=active,<br/>effective ≤ today"]
+        F --> H["Hybrid search<br/>BM25 + dense, top 20"]
+        H --> RRF["Rank fusion (RRF)"] --> RR["Cross-encoder rerank<br/>top 3–5"]
+        RR --> GATE{"Confident?"}
+        GATE -->|no| REF["Fixed refusal +<br/>route to policy desk"]
+        GATE -->|yes| P["Prompt contract:<br/>answer only from context, cite"]
+        P --> M["LLM"] --> CHK["Citation check"] --> A["Answer + citations"]
+    end
+    VDB -.-> H
+    KW -.-> H
+    classDef good fill:#e8f5e9,stroke:#2e7d32
+    class F,RR,CHK good

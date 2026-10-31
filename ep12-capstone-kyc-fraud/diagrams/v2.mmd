@@ -1,0 +1,23 @@
+flowchart TB
+    APP["Customer app<br/>ID · selfie · video KYC"] --> OBJ[("Object store<br/>in-region")] --> EV[["Application event"]]
+    EV --> C1["OCR + document checks<br/>validity · tamper"]
+    EV --> C2["Face match + liveness"]
+    EV --> C3["Sanctions / PEP screening"]
+    EV --> C4["Device · velocity · graph signals"]
+    C1 & C2 & C3 & C4 --> FEAT["Feature assembly"]
+    FEAT --> ML["Fraud risk model (classic ML)<br/>calibrated score + reason codes"]
+    ML --> RULES{"Rules engine<br/>(versioned)"}
+    RULES -->|"low risk, all checks pass"| AUTO["Auto-approve → core banking"]
+    RULES -->|"flags / medium-high risk"| CASE["Analyst case"]
+    CASE --> COP["LLM copilot (read-only)<br/>summary from facts + reason codes<br/>policy citations via RAG"]
+    COP --> AN["Analyst decides<br/>approve · reject · V-CIP"]
+    AN --> CORE[("Core banking")]
+    AUTO & AN --> AUD[("Audit log<br/>checks · score · reasons · versions · decision")]
+    MON["Monitoring: drift · calibration · fairness · copilot faithfulness"] -.- ML
+    MON -.- COP
+    classDef ml fill:#e3f2fd,stroke:#1565c0
+    classDef llm fill:#fff7e6,stroke:#d4a017
+    classDef human fill:#e8f5e9,stroke:#2e7d32
+    class ML ml
+    class COP llm
+    class AN human

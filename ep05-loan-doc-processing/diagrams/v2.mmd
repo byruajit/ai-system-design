@@ -1,0 +1,15 @@
+flowchart LR
+    U["Upload"] --> OBJ[("Object storage<br/>India region")] --> Q[["Queue"]]
+    Q --> SPLIT["Split into pages"] --> CLS["Page classifier<br/>ID · payslip · statement · deed"]
+    CLS --> EXA["Extractor per doc type<br/>value + confidence + page"]
+    EXA --> VAL["Schema validation<br/>(types, PAN format)"]
+    VAL --> RULES["Business rules + cross-checks<br/>income vs payslip · LTV · FOIR"]
+    RULES --> D{"All fields pass?"}
+    D -->|yes| LOS[("LOS via API<br/>with provenance")]
+    D -->|no| HR["Human review<br/>failing fields only, beside the image"]
+    HR --> LOS
+    HR --> LAB[("Corrections → eval dataset")]
+    Q -.-> DLQ[["Dead-letter queue"]]
+    EXA -.-> IDEM[("Idempotency store<br/>hash(file)+version")]
+    classDef good fill:#e8f5e9,stroke:#2e7d32
+    class VAL,RULES,HR,IDEM good

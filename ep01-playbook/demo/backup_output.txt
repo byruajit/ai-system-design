@@ -1,0 +1,28 @@
+$ python tools/cost_estimator.py --compare --route small=0.7,large=0.3
+WORKLOAD
+  queries/day        = 9,000 × 30% × 4 = 10,800
+  queries/month      = 10,800 × 22 workdays = 237,600
+  avg peak QPS       = 10,800 × 60% / (4 h × 3600) = 0.45
+  burst QPS (×5)    = 2.25
+TOKENS PER QUERY
+  input  = 500 sys + 300 history + 5×400 context + 50 question = 2,850
+  output = 300
+COST (illustrative prices — verify before quoting)
+  small   per query $0.00061 (₹0.053)          per month $144.34 (₹12,702)
+  medium  per query $0.00405 (₹0.356)          per month $962.28 (₹84,681)
+  large   per query $0.01305 (₹1.148)          per month $3,100.68 (₹272,860)
+  routed (70% small, 30% large) per query $0.00434 (₹0.382) per month $1,031.24 (₹90,749)
+
+$ python ep01-playbook/demo/token_budget.py
+Token counting: heuristic ≈ 4 characters per token
+
+  system prompt           294    11%  ████
+  history                  64     2%  
+  context (5 chunks)    2,290    86%  ██████████████████████████████████
+  question                 15     1%  
+  INPUT TOTAL           2,663
+  output (assumed)        300
+
+  small   $0.00058 per question  (illustrative prices)
+  medium  $0.00386 per question  (illustrative prices)
+  large   $0.01249 per question  (illustrative prices)

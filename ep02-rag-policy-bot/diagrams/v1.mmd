@@ -1,0 +1,6 @@
+flowchart LR
+    D["Policy PDFs / DOCX"] --> L["Loader"] --> S["Fixed 500-token<br/>splitter"] --> E["Embedding model"] --> V[("Vector DB")]
+    Q["Employee question"] --> QE["Embed question"] --> V
+    V -->|"top-5 by cosine"| P["Prompt:<br/>question + chunks"] --> M["LLM"] --> A["Answer"]
+    classDef bad fill:#fdecea,stroke:#c0392b
+    class S,A bad

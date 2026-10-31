@@ -1,0 +1,14 @@
+flowchart TB
+    U["Employees / customers<br/>web · mobile · Teams"] --> GW["API Gateway<br/>SSO auth · rate limits · request IDs"]
+    GW --> OR["Orchestrator<br/>prompt assembly · routing · guardrails"]
+    OR --> LG["LLM Gateway<br/>model routing · fallbacks · budgets"]
+    OR --> RET["Retrieval<br/>vector + keyword search · rerank"]
+    OR --> TOOLS["Tools via MCP<br/>core banking · CRM · LOS"]
+    LG --> M1["Small model"]
+    LG --> M2["Frontier model"]
+    RET --> VDB[("Vector index")]
+    RET --> DOCS[("Document store")]
+    OR --> STORES[("Cache · conversation state · audit log")]
+    GW -.- XC["Cross-cutting, applies to every box<br/>observability · evals · security · cost tracking"]
+    classDef xc fill:#fff7e6,stroke:#d4a017,stroke-dasharray:4 3
+    class XC xc

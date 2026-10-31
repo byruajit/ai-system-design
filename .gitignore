@@ -1,0 +1,14 @@
+# Production files (run sheets, YouTube kits, live decks) stay local
+**/script.md
+**/youtube.md
+**/*.pptx
+
+# Office lock files
+~$*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env

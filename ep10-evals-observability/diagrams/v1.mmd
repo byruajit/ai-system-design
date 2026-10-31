@@ -1,0 +1,5 @@
+flowchart LR
+    DEV["Developer changes prompt / retrieval"] --> REV["Code review<br/>(reads code, not behaviour)"] --> PROD["Production"]
+    PROD --> DASH["Dashboard: uptime + latency only"]
+    classDef bad fill:#fdecea,stroke:#c0392b
+    class REV,DASH bad

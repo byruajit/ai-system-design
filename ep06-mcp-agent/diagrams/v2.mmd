@@ -1,0 +1,18 @@
+flowchart LR
+    CC["Contact-centre agent<br/>(human)"] --> UI["Agent console"]
+    EM["Customer email / chat<br/>UNTRUSTED"] --> UI
+    UI --> IR["Intent router"] --> AL["Tool allowlist for intent"]
+    AL --> LOOP["Agent loop<br/>max 6 steps · token & time budget · loop detection"]
+    LOOP --> MCP1["MCP: cards"]
+    LOOP --> MCP2["MCP: transactions"]
+    MCP1 --> SCOPE["Scope check: customer from<br/>session token, not model args"]
+    MCP2 --> SCOPE
+    SCOPE --> R["READ → execute"]
+    SCOPE --> W["WRITE → pending action"]
+    W --> APP{"Human approves?"}
+    APP -->|yes| CORE[("Core banking")]
+    R --> CORE
+    SCOPE --> AUD[("Audit log")]
+    LOOP -->|"limit hit"| HO["Hand off to human"]
+    classDef good fill:#e8f5e9,stroke:#2e7d32
+    class AL,SCOPE,W,APP good

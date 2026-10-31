@@ -1,0 +1,11 @@
+flowchart LR
+    S(["Start: application ID"]) --> G["Gather facts<br/>(code, not an agent)<br/>LOS · bureau · statements"]
+    G --> D["Drafter agent"]
+    D --> CR["Critic<br/>deterministic checks + checklist"]
+    CR -->|"issues and revisions ≤ 2"| D
+    CR -->|"issues after 2 revisions"| ESC["Escalate to analyst"]
+    CR -->|"no issues"| H{{"Checkpoint:<br/>credit officer sign-off"}}
+    H --> E(["Memo filed in LOS"])
+    ST[("Typed state<br/>facts (read-only) · draft · critique · revisions")] -.- D & CR & H
+    classDef good fill:#e8f5e9,stroke:#2e7d32
+    class G,CR,H,ST good

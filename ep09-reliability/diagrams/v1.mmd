@@ -1,0 +1,5 @@
+flowchart LR
+    U["10× month-end traffic"] --> APP["App<br/>30 s timeout · 3 immediate retries"] --> P["Primary LLM provider<br/>(down)"]
+    APP -. "retry storm" .-> P
+    classDef bad fill:#fdecea,stroke:#c0392b
+    class APP,P bad
