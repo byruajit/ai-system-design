@@ -1,6 +1,6 @@
 # Ep 11 — Secure and Govern It: Prompt Injection, PII, Agent Permissions, Audit
 
-**Release:** Sat 9 Jan 2027, 7:30 PM IST
+**Release:** Wed 25 Nov 2026
 **Interview question:** *"How do you secure an LLM application in a regulated bank?"*
 **Northwind demand:** Daniel (CISO): "My red team broke the servicing agent in 20 minutes, found PAN numbers in our LLM logs, and asked one question I couldn't answer: *which model versions are in production, and who approved them?*"
 

@@ -1,6 +1,6 @@
 # Ep 10 — Evals and Observability: Proving Your AI System Works
 
-**Release:** Sat 2 Jan 2027, 7:30 PM IST
+**Release:** Sun 22 Nov 2026
 **Interview question:** *"How do you know your RAG answers are correct in production?"*
 **Northwind demand:** Karen (internal audit): "Before the regulator's inspection I need evidence that the policy bot is accurate, that it doesn't leak, and that last month's prompt change didn't make it worse. 'It looked fine in the demo' is not evidence."
 

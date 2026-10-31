@@ -1,6 +1,6 @@
 # Ep 12 — Capstone: Design a KYC and Fraud Copilot (Live Mock Interview)
 
-**Release:** Sat 16 Jan 2027, 7:30 PM IST
+**Release:** Sat 28 Nov 2026
 **Interview question:** *"Design an AI-assisted KYC and fraud review system for a bank onboarding 15,000 customers a day."*
 **Northwind demand:** Priya: "Digital onboarding is growing 40% a year. KYC analysts are drowning: 9,000 cases a day in the review queue, synthetic-identity fraud is rising, and the regulator expects every decision to be explainable."
 

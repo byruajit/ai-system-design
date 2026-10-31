@@ -1,6 +1,6 @@
 # Ep 6 — Design a Tool-Calling Agent with MCP and Guardrails
 
-**Release:** Sat 5 Dec 2026, 7:30 PM IST
+**Release:** Sat 14 Nov 2026
 **Interview question:** *"Design an AI agent that can act on customer accounts safely."*
 **Northwind demand:** Priya (CDO): "Contact-centre agents spend 4 minutes per call clicking through 6 screens to block a card or raise a dispute. Give them an AI that does it." Daniel (CISO): "If it can act, it can be tricked into acting."
 

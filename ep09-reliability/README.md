@@ -1,6 +1,6 @@
 # Ep 9 — Make It Survive Month-End: Reliability and Failover for AI Systems
 
-**Release:** Sat 26 Dec 2026, 7:30 PM IST
+**Release:** Sat 21 Nov 2026
 **Interview question:** *"The LLM provider went down during peak. What happens to your system?"*
 **Northwind demand:** Month-end, 10:40 AM. Traffic ×10. The primary LLM provider starts timing out. Branches can't answer customers, the contact-centre agent stalls mid-call, and retries make everything worse. Priya: "This can never happen again at month-end."
 

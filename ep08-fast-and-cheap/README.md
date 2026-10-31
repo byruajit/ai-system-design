@@ -1,6 +1,6 @@
 # Ep 8 — Make It Fast and Cheap: Caching, Batching, Streaming, Self-Hosting
 
-**Release:** Sat 19 Dec 2026, 7:30 PM IST
+**Release:** Wed 18 Nov 2026
 **Interview question:** *"Your LLM bill tripled and p95 latency is 9 seconds. Fix it."*
 **Northwind demand:** Arjun: "Usage tripled after the HR rollout. The bill is up 3×, branch staff say the bot 'thinks forever', and Finance wants a plan by Friday."
 

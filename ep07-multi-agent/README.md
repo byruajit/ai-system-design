@@ -1,6 +1,6 @@
 # Ep 7 — Multi-Agent Systems: When They Win, When They're a Trap
 
-**Release:** Sat 12 Dec 2026, 7:30 PM IST
+**Release:** Sun 15 Nov 2026
 **Interview question:** *"Design a multi-agent system that drafts credit memos for home loans."*
 **Northwind demand:** The credit team saw a demo: "a researcher agent, an analyst agent, a risk agent, a compliance agent and a writer agent collaborate on the credit memo." They want it in production. Arjun asks what it'll cost; Karen (audit) asks how she'll know which agent said what.
 

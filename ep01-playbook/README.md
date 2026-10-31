@@ -1,5 +1,6 @@
 # Ep 1 — The AI System Design Interview Playbook
 
+**Release:** Sat 31 Oct 2026
 **Interview question:** *"Walk me through how you'd approach any AI system design question."*
 **Northwind demand:** Priya (CDO): "We want an AI assistant for 9,000 employees. Before anyone builds anything, tell me how you'll design it and what it'll cost."
 

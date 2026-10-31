@@ -1,6 +1,6 @@
 # Ep 2 — Design a Bank's Policy Q&A Bot (RAG from First Principles)
 
-**Release:** Sat 7 Nov 2026, 7:30 PM IST
+**Release:** Wed 4 Nov 2026
 **Interview question:** *"Design a chatbot that answers employee questions over 50,000 internal documents."*
 **Northwind demand:** Meera (Head of Retail Lending): "My branch staff spend 20 minutes hunting through circulars for one answer. And last month someone quoted a withdrawn policy to a customer."
 

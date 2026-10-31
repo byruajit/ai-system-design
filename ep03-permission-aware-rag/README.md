@@ -1,6 +1,6 @@
 # Ep 3 — Permission-Aware RAG at Scale: Ingestion, Freshness, Access Control
 
-**Release:** Sat 14 Nov 2026, 7:30 PM IST
+**Release:** Sat 7 Nov 2026
 **Interview question:** *"How do you keep a RAG system fresh, and stop it leaking documents a user isn't allowed to see?"*
 **Northwind demand:** Daniel (CISO): "An intern asked the bot about director pay and got an answer. Fix it this week. And HR withdrew a policy on Monday that the bot was still quoting on Thursday."
 

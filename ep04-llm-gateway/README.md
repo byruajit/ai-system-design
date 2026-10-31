@@ -1,6 +1,6 @@
 # Ep 4 — Design an LLM Gateway: Model Selection, Routing, Fallbacks, Cost per Answer
 
-**Release:** Sat 21 Nov 2026, 7:30 PM IST
+**Release:** Sun 8 Nov 2026
 **Interview question:** *"How would you choose and route between multiple LLMs in an enterprise?"*
 **Northwind demand:** Arjun (Platform): "Five teams now call three AI providers directly with keys in their code. One team spent a month's budget in nine days, and when a provider went down on Tuesday, everything went down with it."
 

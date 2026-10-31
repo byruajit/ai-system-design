@@ -1,6 +1,6 @@
 # Ep 5 — Design a Loan Document Processing System (OCR → Structured Data)
 
-**Release:** Sat 28 Nov 2026, 7:30 PM IST
+**Release:** Wed 11 Nov 2026
 **Interview question:** *"Design a system that extracts data from 100,000 scanned loan pages a day."*
 **Northwind demand:** Meera (Retail Lending): "A home-loan file takes 6 days because people retype data from 25 scanned pages into the LOS. I want it in one day, and I can't afford a wrong income figure."
 
