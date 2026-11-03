@@ -21,6 +21,12 @@ A free 12-episode YouTube series on **AI Engineering with Ajit** (@AjitByru). St
 | 11 | Wed 25 Nov 2026 | [Secure and Govern It](ep11-security-governance/) | "Secure an LLM app in a regulated bank" | Guardrails + promptfoo red-team |
 | 12 | Sat 28 Nov 2026 | [Capstone: KYC & Fraud Copilot](ep12-capstone-kyc-fraud/) | "AI-assisted KYC and fraud review" | ML scores, LLM explains |
 
+## Extras
+
+| Project | What it is | Ties into |
+| --- | --- | --- |
+| [QuakeFlow](extras/quakeflow/) | A production-shaped ETL mini-project: USGS earthquake API → pandas → data-quality gate → idempotent Postgres upserts, plus the same code as a Databricks bronze/silver/gold job. 33 tests, Docker, CI/CD workflows. | The data layer under every AI system: idempotent re-ingest (Ep 3, 5), watermarks and freshness (Ep 3), retries (Ep 9), quality gates and run audits (Ep 10, 11) |
+
 ## Repo map
 
 ```
@@ -28,6 +34,7 @@ framework/   9-step playbook · estimation formulas · interview rubric
 northwind/   case study · assumptions (every number) · synthetic policy corpus · golden set
 tools/       cost_estimator.py · nwlib.py (retrieval helpers) · render.py (cheat sheets + diagrams)
 epNN-*/      README (design + model answers) · cheatsheet.pdf · diagrams/ (Mermaid + PNG) · demo/ (runnable code)
+extras/      standalone mini-projects that go deeper on one layer (quakeflow/: data pipeline)
 ```
 
 ## Run the demos
@@ -39,7 +46,14 @@ python tools/cost_estimator.py --compare --route small=0.7,large=0.3
 python ep02-rag-policy-bot/demo/rag_demo.py
 ```
 
-Every demo runs **offline** (no API keys). Where an LLM call adds value (Ep 2), set `LLM_BASE_URL`, `LLM_API_KEY` and `LLM_MODEL` for any OpenAI-compatible endpoint (Groq free tier, or Ollama locally). Install `sentence-transformers` for real embeddings; otherwise an offline stand-in is used and labelled on screen.
+QuakeFlow has its own dependencies (pandas, SQLAlchemy, Postgres driver), so install it separately; it needs network access to the public USGS API (no key):
+
+```bash
+pip install -e "extras/quakeflow[dev]"
+pytest extras/quakeflow -m "not integration"
+```
+
+Every episode demo runs **offline** (no API keys). Where an LLM call adds value (Ep 2), set `LLM_BASE_URL`, `LLM_API_KEY` and `LLM_MODEL` for any OpenAI-compatible endpoint (Groq free tier, or Ollama locally). Install `sentence-transformers` for real embeddings; otherwise an offline stand-in is used and labelled on screen.
 
 ## Honesty notes
 - **Northwind Bank is fictional.** Its policies, people and numbers are invented for teaching.

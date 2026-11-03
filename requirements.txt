@@ -13,3 +13,5 @@ sentence-transformers # real embeddings instead of the offline stand-in (needs m
 # Rendering cheat sheets/diagrams (maintainers only)
 markdown
 playwright            # then: playwright install chromium ; and npm i -g @mermaid-js/mermaid-cli
+
+# Extras: QuakeFlow has its own dependencies; install with  pip install -e "extras/quakeflow[dev]"

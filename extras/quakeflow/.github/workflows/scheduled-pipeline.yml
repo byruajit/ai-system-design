@@ -1,0 +1,65 @@
+name: Scheduled pipeline run
+
+on:
+  # Daily scheduling lives in the Databricks bundle's quakeflow_daily job
+  # (databricks/resources/quakeflow_job.yml) against Delta/Unity Catalog.
+  # This workflow is kept for manual/local runs against Postgres only.
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days to back-fill"
+        required: false
+        default: "1"
+      min_magnitude:
+        description: "Minimum magnitude"
+        required: false
+        default: "2.5"
+      dry_run:
+        description: "Extract + transform only, do not load"
+        type: boolean
+        default: false
+
+jobs:
+  run:
+    name: quakeflow run
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -e .
+
+      - name: Run the pipeline
+        env:
+          # Add QF_DATABASE_URL in Settings -> Secrets and variables -> Actions
+          QF_DATABASE_URL: ${{ secrets.QF_DATABASE_URL }}
+          QF_DB_SCHEMA: quakeflow
+          QF_MIN_MAGNITUDE: ${{ inputs.min_magnitude || '2.5' }}
+          QF_LOG_LEVEL: INFO
+        run: |
+          quakeflow run \
+            --days "${{ inputs.days || '1' }}" \
+            ${{ inputs.dry_run == true && '--dry-run' || '' }} \
+            | tee run-summary.json
+
+      - name: Publish run summary
+        if: always()
+        run: |
+          echo '### QuakeFlow run' >> $GITHUB_STEP_SUMMARY
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          cat run-summary.json >> $GITHUB_STEP_SUMMARY || echo '{"status":"failed"}' >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload bronze snapshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bronze-${{ github.run_id }}
+          path: data/bronze/**
+          if-no-files-found: ignore
+          retention-days: 7
