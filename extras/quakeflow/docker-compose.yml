@@ -1,0 +1,43 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: quakeflow-postgres
+    environment:
+      POSTGRES_USER: quake
+      POSTGRES_PASSWORD: quake
+      POSTGRES_DB: quakeflow
+    ports:
+      - "5433:5432"          # 5433 on the host so it never clashes with a local Postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quake -d quakeflow"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  adminer:
+    image: adminer:4
+    container_name: quakeflow-adminer
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"          # browse the warehouse at http://localhost:8080
+
+  etl:
+    build: .
+    container_name: quakeflow-etl
+    profiles: ["etl"]        # docker compose --profile etl run --rm etl run --days 3
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      QF_DATABASE_URL: postgresql+psycopg2://quake:quake@postgres:5432/quakeflow
+      QF_DB_SCHEMA: quakeflow
+      QF_MIN_MAGNITUDE: "2.5"
+    volumes:
+      - ./data:/app/data
+
+volumes:
+  pgdata:

@@ -72,6 +72,8 @@ Decide **per document type** using field-level accuracy on ~200 real labelled pa
 ## Demo
 `python demo/extraction_pipeline.py`: three loan files. One clean (auto-accepted); one blurry (PAN fails validation); one where the model invented a payslip figure that **passed the confidence threshold** but was caught by the income cross-check. Then a retry storm that doesn't create duplicates.
 
+**Go deeper:** the [QuakeFlow extra](../extras/quakeflow/) applies the same discipline to a live public API: raw snapshot first, blocking validation before any write, `ON CONFLICT DO UPDATE` so retries are safe, and an audit row for every run.
+
 ## Interviewer follow-ups — model answers
 
 **1. OCR+LLM or a vision model?** Decide per document type by field-level accuracy and cost on a labelled sample. Typed digital PDFs: text extraction + a small LLM is cheaper and gives exact provenance. Photos, stamps, handwriting and complex tables: a vision model is usually worth the cost. Keep the interface identical so you can switch.

@@ -1,0 +1,45 @@
+resources:
+  jobs:
+    quakeflow_daily:
+      name: "[${bundle.target}] QuakeFlow daily medallion refresh"
+      description: Ingest USGS earthquake events into bronze/silver/gold Delta tables.
+
+      schedule:
+        quartz_cron_expression: "0 30 5 * * ?"   # 05:30 UTC daily
+        timezone_id: UTC
+        pause_status: ${var.schedule_pause_status}
+
+      email_notifications:
+        on_failure:
+          - ${workspace.current_user.userName}
+
+      environments:
+        - environment_key: quakeflow_env
+          spec:
+            client: "2"
+            dependencies:
+              - ../dist/*.whl
+
+      tasks:
+        - task_key: ingest_and_transform
+          environment_key: quakeflow_env
+          notebook_task:
+            notebook_path: ../notebooks/quakeflow_medallion.py
+            base_parameters:
+              catalog: ${var.catalog}
+              target_schema: ${var.target_schema}
+              lookback_days: ${var.lookback_days}
+              min_magnitude: ${var.min_magnitude}
+
+        - task_key: quality_gate
+          depends_on:
+            - task_key: ingest_and_transform
+          environment_key: quakeflow_env
+          notebook_task:
+            notebook_path: ../notebooks/quakeflow_quality_checks.py
+            base_parameters:
+              catalog: ${var.catalog}
+              target_schema: ${var.target_schema}
+
+      queue:
+        enabled: true

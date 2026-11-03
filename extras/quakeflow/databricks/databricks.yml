@@ -1,0 +1,45 @@
+# Databricks Asset Bundle - the "deploy the pipeline to the lakehouse" half of the project.
+# Docs: https://docs.databricks.com/dev-tools/bundles/index.html
+bundle:
+  name: quakeflow
+
+variables:
+  catalog:
+    description: Unity Catalog catalog that holds the medallion tables
+    default: main
+  target_schema:
+    description: Schema inside the catalog
+    default: quakeflow_dev
+  min_magnitude:
+    description: Minimum magnitude to ingest
+    default: "2.5"
+  lookback_days:
+    description: How many days each scheduled run pulls
+    default: "1"
+  schedule_pause_status:
+    description: PAUSED in dev so nobody burns compute by accident
+    default: PAUSED
+
+include:
+  - resources/*.yml
+
+targets:
+  dev:
+    mode: development           # jobs are prefixed [dev yourname] and paused by default
+    default: true
+    workspace:
+      root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      target_schema: quakeflow_dev
+
+  prod:
+    mode: production
+    workspace:
+      root_path: /Workspace/Shared/.bundle/${bundle.name}/${bundle.target}
+    variables:
+      target_schema: quakeflow
+      lookback_days: "1"
+      schedule_pause_status: UNPAUSED
+    permissions:
+      - level: CAN_VIEW
+        group_name: users

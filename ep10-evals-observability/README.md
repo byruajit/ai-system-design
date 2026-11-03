@@ -74,6 +74,8 @@ python demo/eval_gate.py --config regression   # "simplified retrieval" → refu
 ```
 `demo/github-actions-eval-gate.yml` wires the gate into CI; traces are written to `eval_traces.jsonl` for upload.
 
+**Go deeper:** the data-pipeline cousin of this gate lives in the [QuakeFlow extra](../extras/quakeflow/): `validate.py` splits checks into blocking and warning, and the `pipeline_runs` table answers "did it run, did it work, how much moved" in SQL.
+
 ## Interviewer follow-ups — model answers
 
 **1. How do you build the first golden set?** Mine real questions from the pilot and the helpdesk; have domain experts write expected sources and facts; add unanswerable, restricted and adversarial items deliberately. Start with 50 and grow weekly from production failures. Quality beats size.

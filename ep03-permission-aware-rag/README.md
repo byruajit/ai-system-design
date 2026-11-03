@@ -66,6 +66,8 @@ Nightly batch: crawl everything, re-embed everything, one index, no ACLs.
 ## Demo
 `python demo/acl_rag.py` plays five scenes: the leak, pre- vs post-filtering, an IdP group change, a tombstone delete, and a blue-green alias swap.
 
+**Go deeper:** the ingestion half of this design (idempotent upserts keyed by a stable ID, and a watermark with an overlap window so late revisions aren't missed) is built for real in the [QuakeFlow extra](../extras/quakeflow/). Run it twice and watch the row count stay put.
+
 ## Interviewer follow-ups — model answers
 
 **1. Pre-filter or post-filter?** Pre-filter, inside the vector DB query, using a payload/metadata filter. Post-filtering retrieves top-k and then drops forbidden chunks, so a user may get 1 result instead of 5, and a bug in the filter leaks data. Most vector DBs (Qdrant, pgvector with WHERE, OpenSearch, Weaviate) support filtered ANN search; check its recall with restrictive filters.

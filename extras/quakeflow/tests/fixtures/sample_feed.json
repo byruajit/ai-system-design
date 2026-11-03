@@ -1,0 +1,71 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {"title": "USGS Earthquakes", "count": 6},
+  "features": [
+    {
+      "type": "Feature",
+      "id": "us7000abc1",
+      "properties": {
+        "mag": 5.4, "place": "35km SSW of Ridgecrest, CA", "time": 1717243200000,
+        "updated": 1717246800000, "tsunami": 0, "sig": 448, "type": "earthquake",
+        "status": "reviewed", "felt": 120, "alert": "green",
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000abc1"
+      },
+      "geometry": {"type": "Point", "coordinates": [-117.6, 35.6, 8.2]}
+    },
+    {
+      "type": "Feature",
+      "id": "us7000abc2",
+      "properties": {
+        "mag": 3.1, "place": "Off the coast of Honshu, Japan", "time": 1717250400000,
+        "updated": 1717254000000, "tsunami": 1, "sig": 148, "type": "earthquake",
+        "status": "automatic", "felt": null, "alert": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000abc2"
+      },
+      "geometry": {"type": "Point", "coordinates": [142.1, 38.2, 45.0]}
+    },
+    {
+      "type": "Feature",
+      "id": "us7000abc2",
+      "properties": {
+        "mag": 3.4, "place": "Off the coast of Honshu, Japan", "time": 1717250400000,
+        "updated": 1717257600000, "tsunami": 1, "sig": 178, "type": "earthquake",
+        "status": "reviewed", "felt": 4, "alert": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000abc2"
+      },
+      "geometry": {"type": "Point", "coordinates": [142.1, 38.2, 45.0]}
+    },
+    {
+      "type": "Feature",
+      "id": "nc73mine1",
+      "properties": {
+        "mag": 1.9, "place": "8km E of Coalinga, CA", "time": 1717254000000,
+        "updated": 1717257600000, "tsunami": 0, "sig": 55, "type": "quarry blast",
+        "status": "reviewed", "felt": null, "alert": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc73mine1"
+      },
+      "geometry": {"type": "Point", "coordinates": [-120.2, 36.1, 1.0]}
+    },
+    {
+      "type": "Feature",
+      "id": "us7000abc4",
+      "properties": {
+        "mag": null, "place": "Somewhere unknown", "time": 1717257600000,
+        "updated": 1717261200000, "tsunami": 0, "sig": null, "type": "earthquake",
+        "status": "automatic", "felt": null, "alert": null, "url": null
+      },
+      "geometry": {"type": "Point", "coordinates": [10.0, 10.0, 12.0]}
+    },
+    {
+      "type": "Feature",
+      "id": "us7000abc5",
+      "properties": {
+        "mag": 6.8, "place": "120km SW of Concepcion, Chile", "time": 1717261200000,
+        "updated": 1717264800000, "tsunami": 1, "sig": 720, "type": "earthquake",
+        "status": "reviewed", "felt": 890, "alert": "orange",
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000abc5"
+      },
+      "geometry": {"type": "Point", "coordinates": [-74.2, -37.1, 320.5]}
+    }
+  ]
+}
